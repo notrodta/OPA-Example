@@ -19,15 +19,15 @@ services:
     - "--set=bundles.nginx.resource=bundles/bundle.tar.gz"
     depends_on:
     - bundle_server
-  api_server:
-    image: openpolicyagent/demo-restful-api:0.3
-    ports:
-    - 5000:5000
-    environment:
-    - OPA_ADDR=http://opa:8181
-    - POLICY_PATH=/v1/data/httpapi/authz
-    depends_on:
-    - opa
+  # api_server:
+  #   image: openpolicyagent/demo-restful-api:0.3
+  #   ports:
+  #   - 5000:5000
+  #   environment:
+  #   - OPA_ADDR=http://opa:8181
+  #   - POLICY_PATH=/v1/data/httpapi/authz
+  #   depends_on:
+  #   - opa
   bundle_server:
     image: nginx:1.20.0-alpine
     ports:
