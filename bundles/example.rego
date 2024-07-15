@@ -1,6 +1,7 @@
 package httpapi.authz
 
 import rego.v1
+import data.role_permissions # // import role_permissions from data.json
 
 # bob is alice's manager, and betty is charlie's.
 subordinates := {"alice": [], "charlie": [], "bob": ["alice"], "betty": ["charlie"]}
@@ -18,6 +19,7 @@ allow if {
 	print("test 2")
 	print(subordinates)
 	print(input)
+	print(role_permissions)
 	some username
 	input.method == "GET"
 	input.path = ["finance", "salary", username]
