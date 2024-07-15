@@ -15,6 +15,9 @@ allow if {
 
 # Allow managers to get their subordinates' salaries.
 allow if {
+	print("test 2")
+	print(subordinates)
+	print(input)
 	some username
 	input.method == "GET"
 	input.path = ["finance", "salary", username]
