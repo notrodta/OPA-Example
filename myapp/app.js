@@ -1,33 +1,24 @@
 const express = require("express");
 const axios = require("axios");
-const bodyParser = require('body-parser');
-const extAuthz = require('@build-security/opa-express-middleware');
+const bodyParser = require("body-parser");
+const extAuthz = require("@build-security/opa-express-middleware");
 
 const app = express();
 const port = 3000;
 
-const opa_url = "http://opa:8181";
-const policy_path = "/v1/data/httpapi/authz";
-
-const url = opa_url + policy_path;
-
-const access_token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJkZWxldGUiLCJ3cml0ZSIsImFkbWluIl19.0FCORUheMA4-yWb4agGtnq9zrK0IoOIsEA2m37gZfMQ";
-
-  const extAuthzMiddleware = extAuthz.authorize((req) => ({
-    port: 8181,
-    hostname: 'http://opa',
-    policyPath: 'httpapi/authz/allow',
-    // enable: req.method === "GET",
-    // enrich: { serviceId: 1 }
+const extAuthzMiddleware = extAuthz.authorize((req) => ({
+  port: 8181,
+  hostname: "http://opa",
+  policyPath: "httpapi/authz/allow",
+  // enable: req.method === "GET",
+  // enrich: { serviceId: 1 }
 }));
 
 app.use(bodyParser.json());
 
-app.get('/region/:region/users/:userId', extAuthzMiddleware, (req, res) => {
-    res.send('allowed');
+app.get("/region/:region/users/:userId", extAuthzMiddleware, (req, res) => {
+  res.send("allowed");
 });
-
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
