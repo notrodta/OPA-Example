@@ -13,12 +13,13 @@ allow if {
     print(input.request.path)
     print(input.resources.attributes)
     print(role_permissions)
-    permission := role_permissions[_]
-    print("permission start")
+    # permission := role_permissions[_]
     print(input.resources.permissions)
-    print(permission)
-    print("permission start")
-    permission == input.resources.permissions[0]
+    # print(permission)
+    # permission == input.resources.permissions[0]
+    user_permission := input.resources.permissions[_]
+    user_permission in role_permissions
+
     # role := input.subject.roles[_] # // for every input roles
     # permissions := role_permissions[role] # // get permission of the role
     # permission := permissions[_] # // for every permission

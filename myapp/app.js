@@ -24,7 +24,7 @@ const access_token =
 
 app.use(bodyParser.json());
 
-app.get('/region/:region/users/:userId', extAuthz.permissions('read'), extAuthzMiddleware, (req, res) => {
+app.get('/region/:region/users/:userId', extAuthz.permissions('update', 'delete', 'read'), extAuthzMiddleware, (req, res) => {
     res.send('allowed');
 });
 
