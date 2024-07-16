@@ -12,7 +12,7 @@ const policy_path = "/v1/data/httpapi/authz";
 const url = opa_url + policy_path;
 
 const access_token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJ1c2VyIl19.LW5pvc1TRaIk3FNaMADQmjx2Hy86weS64WtVdgK1oZk";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJkZWxldGUiLCJ3cml0ZSIsImFkbWluIl19.0FCORUheMA4-yWb4agGtnq9zrK0IoOIsEA2m37gZfMQ";
 
   const extAuthzMiddleware = extAuthz.authorize((req) => ({
     port: 8181,
@@ -24,7 +24,7 @@ const access_token =
 
 app.use(bodyParser.json());
 
-app.get('/region/:region/users/:userId', extAuthz.permissions('update', 'delete', 'read'), extAuthzMiddleware, (req, res) => {
+app.get('/region/:region/users/:userId', extAuthzMiddleware, (req, res) => {
     res.send('allowed');
 });
 
