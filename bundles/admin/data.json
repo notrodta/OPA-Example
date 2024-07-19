@@ -1,0 +1,3 @@
+{
+    "admin": ["read", "write", "put", "delete", "everything!"]
+}
