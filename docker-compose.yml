@@ -37,6 +37,8 @@ services:
     - 3000:3000
     depends_on:
     - opa
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   bundle_server:
     image: nginx:1.20.0-alpine
     ports:
